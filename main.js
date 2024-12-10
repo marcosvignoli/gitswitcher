@@ -6,7 +6,6 @@ config();
 // the current accepted args are: Personal or Work
 
 // read the data.json to tell which is the current account saved
-import fs from "node:fs/promises";
 import { exec } from "node:child_process";
 
 const arg = process.argv[2];
