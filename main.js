@@ -11,25 +11,24 @@ import { exec } from "node:child_process";
 const arg = process.argv[2];
 // this is something that windows requests it can be anything, its not the same as the user setted for git
 // this can be extended to have "personal" and "work" as username to distinguish the two accounts
-const username = "marcosvignoli";
 
 // delete keys
-function deleteKey() {
+function deleteKey(username) {
   exec("cmdkey /delete:git:https://github.com");
   exec(`cmdkey /delete:git:https://${username}@github.com`);
 }
 
 if (arg === "personal") {
-  deleteKey();
+  deleteKey("personal");
   console.log("the arg is: ", arg);
   exec(
-    `cmdkey /generic:git:https://github.com /user:${username} /pass:${process.env.personal}`
+    `cmdkey /generic:git:https://github.com /user:personal /pass:${process.env.personal}`
   );
 }
 if (arg === "work") {
-  deleteKey();
+  deleteKey("work");
   exec(
-    `cmdkey /generic:git:https://github.com /user:${username} /pass:${process.env.work}`
+    `cmdkey /generic:git:https://github.com /user:work /pass:${process.env.work}`
   );
   console.log("the arg is: ", arg);
 }
