@@ -94,26 +94,45 @@ if (currentOS === "Windows") {
 if (currentOS === "macOS") {
 	console.log("you are in mac");
 	// delete account in mac
-	// exec(`security delete-internet-password -l github.com`, (error, output) => {
-	// 	if (error) {
-	// 		console.log(error);
-	// 	}
-	// 	if (output) {
-	// 		console.log(output);
-	// 	}
-	// 	console.log("account deleted");
-	// });
+
 	// create account in mac
-	exec(
-		`security add-internet-password -a "marcosvignoli" -s "github.com" -w ${personal}`,
-		(error, output) => {
-			if (error) {
-				console.log(error);
+
+	function deleteKeychain() {
+		exec(
+			`printf "protocol=https\nhost=github.com\n" | git credential-osxkeychain erase`,
+			(error, output) => {
+				if (error) {
+					console.log(error);
+				}
+				if (output) {
+					console.log(output);
+				}
+				console.log("account deleted");
 			}
-			if (output) {
-				console.log(output);
+		);
+	}
+	// paste an username and a token
+	function createKeychain(username, token) {
+		// the username its only an identificator for your pc, its not related to your github username
+		exec(
+			`printf "protocol=https\nhost=github.com\nusername=${username}\npassword=${token}\n" | git credential-osxkeychain store`,
+			(error, output) => {
+				if (error) {
+					console.log(error);
+				}
+				if (output) {
+					console.log(output);
+				}
+				console.log("account created");
 			}
-			console.log("account created");
-		}
-	);
+		);
+	}
+
+	deleteKeychain();
+	if (arg === "personal") {
+		createKeychain("marcosvignoli", personal);
+	}
+	if (arg === "work") {
+		createKeychain("marcosvignoli", work);
+	}
 }
