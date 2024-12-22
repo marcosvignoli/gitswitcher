@@ -94,7 +94,7 @@ if (currentOS === "Windows") {
 if (currentOS === "macOS") {
 	console.log("you are in mac");
 	// delete account in mac
-	// exec(`security delete-internet-password -s github.com`, (error, output) => {
+	// exec(`security delete-internet-password -l github.com`, (error, output) => {
 	// 	if (error) {
 	// 		console.log(error);
 	// 	}
@@ -104,16 +104,16 @@ if (currentOS === "macOS") {
 	// 	console.log("account deleted");
 	// });
 	// create account in mac
-	// exec(
-	// 	`security add-internet-password -a "marcosvignoli" -s "github.com" -w ${personal}`,
-	// 	(error, output) => {
-	// 		if (error) {
-	// 			console.log(error);
-	// 		}
-	// 		if (output) {
-	// 			console.log(output);
-	// 		}
-	// 		console.log("account created");
-	// 	}
-	// );
+	exec(
+		`security add-internet-password -a "marcosvignoli" -s "github.com" -w ${personal}`,
+		(error, output) => {
+			if (error) {
+				console.log(error);
+			}
+			if (output) {
+				console.log(output);
+			}
+			console.log("account created");
+		}
+	);
 }
