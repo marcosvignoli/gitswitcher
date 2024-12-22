@@ -24,11 +24,3 @@ or
 ```
 node main.js work
 ```
-
-# trouble shooting
-
-The script at the first time doesn't know which username has your windows credential
-
-- Search for "windows credential manager"
-- Delete all "github" related keys
-- Run the script again an monitor if the keys are being created
