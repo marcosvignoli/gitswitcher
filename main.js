@@ -1,5 +1,23 @@
 import { config } from "dotenv";
 import { exec } from "node:child_process";
+import os from "os";
+
+function detectOS() {
+  const platform = os.platform();
+
+  if (platform === "win32") {
+    return "Windows";
+  } else if (platform === "darwin") {
+    return "macOS";
+  } else if (platform === "linux") {
+    return "Linux";
+  } else {
+    return "Unknown OS";
+  }
+}
+
+const currentOS = detectOS();
+console.log(`Current Operating System: ${currentOS}`);
 
 config();
 // how to use this script:
