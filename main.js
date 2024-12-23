@@ -130,9 +130,9 @@ if (currentOS === "macOS") {
 
 	deleteKeychain();
 	if (arg === "personal") {
-		createKeychain("marcosvignoli", personal);
+		createKeychain("personal", personal);
 	}
 	if (arg === "work") {
-		createKeychain("marcosvignoli", work);
+		createKeychain("work", work);
 	}
 }
