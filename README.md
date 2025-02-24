@@ -24,3 +24,6 @@ or
 ```
 node main.js work
 ```
+
+## Important!
+once you run the command, you need to restart your terminal.
